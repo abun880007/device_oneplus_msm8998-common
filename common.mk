@@ -184,7 +184,11 @@ PRODUCT_PACKAGES += \
 
 # Doze mode
 #PRODUCT_PACKAGES += \
-#    OneplusDoze
+    OneplusThreeDoze
+
+# Device Parts
+PRODUCT_PACKAGES += \
+    OneplusShit    
 
 # DRM
 PRODUCT_PACKAGES += \
