@@ -81,7 +81,6 @@ public final class KernelControl {
         return new File(KEYCODE_SLIDER_TOP).exists() &&
             new File(KEYCODE_SLIDER_MIDDLE).exists() &&
             new File(KEYCODE_SLIDER_BOTTOM).exists();
-            new File(SLIDER_SWAP_NODE).exists();
     }
 
 }
