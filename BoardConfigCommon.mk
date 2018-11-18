@@ -22,8 +22,6 @@
 # definition file).
 #
 
-ALLOW_MISSING_DEPENDENCIES=true
-
 PLATFORM_PATH := device/oneplus/msm8998-common
 
 TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
@@ -286,9 +284,9 @@ BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
-# BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
-# BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/public
-# BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
+BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
+BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/public
+BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(PLATFORM_PATH)/sepolicy/private
 
 SELINUX_IGNORE_NEVERALLOWS := true
 
