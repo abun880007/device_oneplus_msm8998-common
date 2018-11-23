@@ -85,11 +85,10 @@ on property:sys.boot_completed=1
     # CPU is configured, re-enable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 0
 
-    # Input boost configuration
-	write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
-	write /sys/module/cpu_boost/parameters/input_boost_enabled 1
-	write /sys/module/cpu_boost/parameters/input_boost_ms 0
-    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 10
+    #Input Boost
+    write /sys/kernel/cpu_input_boost/enabled 1
+    write /sys/kernel/cpu_input_boost/ib_freqs 1036800 300000
+    write /sys/kernel/cpu_input_boost/ib_duration_ms 100
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
