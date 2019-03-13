@@ -18,11 +18,6 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.aanc.enable=true
 
-# ADB at boot
-persist.service.adb.enable=1
-ro.adb.secure=0
-ro.secure=0
-
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=2 \
@@ -35,7 +30,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.min.duration.secs=30 \
     persist.dirac.acs.controller=qem \
     ro.dirac.acs.storeSettings=1 \
-    ro.dirac.ignore_error=1
+    ro.dirac.ignore_error=1 \
+    tunnel.audio.encode=true
 
 # Audio new
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -45,7 +41,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.fluence.voicerec=true \
     persist.vendor.audio.fluence.speaker=true \
     vendor.audio.tunnel.encode=false \
-    persist.vendor.audio.hw.binder.size_kbyte=1024 \
     persist.vendor.audio.ras.enabled=false \
     vendor.audio.offload.buffer.size.kb=32 \
     vendor.audio.offload.track.enable=true \
@@ -89,26 +84,32 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.oneplus.camera,com.android.camera,org.lineageos.snap \
-    camera.hal1.packagelist=com.oneplus.camera \
     persist.camera.mobicat=2 \
     persist.camera.stats.debugexif=3080192 \
-    persist.ts.rtmakeup=false \
-    camera.disable_zsl_mode=true \
-    persist.sys.camera.preview.size=1920x1080
+    persist.ts.rtmakeup=false
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.cne.feature=1
 
+# Connor
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.connor.disable=1
+
+# Core control
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.core_ctl_min_cpu=2 \
+    ro.vendor.qti.core_ctl_max_cpu=4
+
 # Data
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.mode=concurrent
+    persist.vendor.data.mode=concurrent \
+    ro.vendor.use_data_netmgrd=true
 
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.dpm.feature=9
+    persist.vendor.dpm.feature=11
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -121,19 +122,25 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=420 \
-    debug.sf.disable_backpressure=1 \
+    ro.opengles.version=196610 \
     debug.sf.hw=1 \
-    debug.gralloc.enable_fb_ubwc=1 \
-    debug.gralloc.gfx_ubwc_disable=0 \
+    debug.sf.enable_hwc_vds=1 \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
-    ro.opengles.version=196610 \
-    sdm.debug.disable_skip_validate=1 \
-    sdm.perf_hint_window=0 \
     persist.debug.wfd.enable=1 \
+    persist.hwc.enable_vds=1 \
     persist.sys.force_sw_gles=0 \
     persist.sys.wfd.virtual=0 \
-    persist.hwc.enable_vds=1
+    vendor.gralloc.enable_fb_ubwc=1 \
+    vendor.gralloc.disable_wb_ubwc=1 \
+    vendor.display.disable_skip_validate=1 \
+    vendor.display.enable_default_color_mode=0 \
+    vendor.display.perf_hint_window=50
+
+# IOP
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.iop.enable_uxe=0 \
+    vendor.iop.enable_prefetch_ofr=0
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -151,12 +158,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.nfc_nci=nqx.default \
     ro.nfc.port=I2C \
     persist.nfc.smartcard.config=SIM1,eSE1
-
-# OTG support
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.oem.otg_support=true
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -170,10 +174,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.qsee=yes
 
+# QCOM
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.qcomsysd.enabled=1
+
 # QTI
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.at_library=libqti-at.so \
-    ro.vendor.gt_library=libqti-gt.so
+    ro.vendor.gt_library=libqti-gt.so \
+    ro.vendor.qti.sys.fw.bg_apps_limit=60 \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    ro.vendor.qti.sys.fw.bservice_limit=5 \
+    ro.vendor.qti.sys.fw.bservice_age=5000
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -196,40 +208,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=true \
     persist.sys.oem_smooth=1 \
     persist.radio.VT_CAM_INTERFACE=1 \
-    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.efssync=true \
     persist.radio.multisim.config=dsds \
     persist.radio.enhance_ecall=true \
     persist.radio.hw_mbn_update=0 \
     persist.radio.sw_mbn_update=0 \
     persist.radio.start_ota_daemon=0 \
-    persist.vendor.radio.add_power_save=1 \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_con_rprt=1 \
     persist.vendor.radio.data_ltd_sys_ind=1 \
     persist.vendor.radio.ignore_dom_time=10 \
     persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.sib16_support=1 \
-    persist.vendor.radio.force_on_dc=true \
-    persist.radio.custom_ecc=1 \
-    persist.radio.data_con_rprt=1 \
-    persist.radio.data_ltd_sys_ind=1 \
-    persist.radio.ignore_dom_time=10 \
-    persist.radio.rat_on=combine \
-    persist.radio.sib16_support=1 \
-    persist.radio.RATE_ADAPT_ENABLE=1 \
-    persist.radio.ROTATION_ENABLE=1 \
-    persist.radio.VT_ENABLE=1 \
-    persist.radio.VT_HYBRID_ENABLE=1 \
-    persist.radio.is_wps_enabled=true \
-    persist.radio.videopause.mode=1 \
-    persist.radio.sap_silent_pin=1 \
-    persist.radio.always_send_plmn=true \
-    persist.rcs.supported=0 \
-    persist.dbg.ims_volte_enable=1 \
-    persist.dbg.volte_avail_ovr=1 \
-    persist.dbg.vt_avail_ovr=1 \
-    persist.dbg.wfc_avail_ovr=1 \
-    persist.radio.calls.on.ims=1
+    persist.vendor.radio.bar_fake_gcell=1 \
+    persist.vendor.radio.arfcn_test_mode=3
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -242,7 +235,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.df.mux_count=8 \
     persist.data.df.iwlan_mux=9 \
     persist.data.df.dev_name=rmnet_usb0 \
-    persist.data.iwlan.enable=true
+    persist.vendor.data.iwlan.enable=true
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -251,11 +244,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.sensors.sta_detect=true \
     ro.vendor.sensors.mot_detect=true \
     ro.vendor.sensors.dpc=true \
-    ro.vendor.sensors.multishake=true
+    ro.vendor.sensors.multishake=true \
+    persist.vendor.sensors.direct_channel=true
 
 # Timeservice
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
+
+# Oiface
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.oiface.enable=0 \
+    persist.sys.hardcoder.name=oiface \
+    persist.sys.oiface.feature=oiface:0xF,oifaceim:ffffffff
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -266,13 +266,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
-
-# HAL1 Packages
-camera.hal1.packagelist=com.skype.raider,com.google.android.talk
-
-# VoLTE Prop
-persist.dbg.ims_volte_enable=1
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
-persist.dbg.wfc_avail_ovr=1
-persist.volte_enalbed_by_hw=1 
