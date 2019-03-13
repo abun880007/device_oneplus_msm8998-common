@@ -278,7 +278,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.oneplus_msm8998
+    android.hardware.light@2.0-service.oneplus_8998
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -434,10 +434,6 @@ PRODUCT_PACKAGES += \
 # Thermal
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.1-service.oneplus5
-
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.oneplus_msm8998
 
 # USB
 PRODUCT_PACKAGES += \
